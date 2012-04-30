@@ -32,7 +32,11 @@ if (!class_exists("ueg_widget_act_now")) {
 	class ueg_widget_act_now extends WP_Widget {
 		
 		function __construct() {
-			parent::__construct('ueg_widget_act_now','Act Now',array('description' => __('Act Now Widget', 'ueg_widgets')));
+			parent::__construct(
+						'ueg_widget_act_now', // Base ID
+						'UEG', // Name
+						array('description' => __('Act Now Widget', 'ueg_widgets'))
+						);
 		}
 		
 		function widget($args, $instance) {
@@ -41,7 +45,8 @@ if (!class_exists("ueg_widget_act_now")) {
 				echo $before_title;
 					echo $instance['title'];
 				echo $after_title;
-				echo "Howdy, Bounty Hunter!";
+				echo '<h2>'. $instance['secondary_title'] .'</h2>';
+				echo '<p>'. $instance['body'] .'</p>';
 			echo $after_widget;
 		}
 		
@@ -51,12 +56,30 @@ if (!class_exists("ueg_widget_act_now")) {
 		
 		function form($instance) {
 			$title = esc_attr($instance['title']);
+			$secondary_title = esc_attr($instance['secondary_title']);
+			$body = esc_attr($instance['body']);
+			$img = esc_attr($instance['img']);
 			?> 
 			<p>
 				<label for="<?php echo $this->get_field_id('title'); ?>">Title: 
-					<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" 
-							name="<?php echo $this->get_field_name('title'); ?>" 
-							type="text" value="<?php echo $title; ?>" />
+				<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" 
+						name="<?php echo $this->get_field_name('title'); ?>" 
+						type="text" value="<?php echo $title; ?>" />
+				</label>
+				<label for="<?php echo $this->get_field_id('secondary_title'); ?>">Secondary Title:
+				<input class="widefat" id="<?php echo $this->get_field_id('secondary_title'); ?>"
+						name="<?php echo $this->get_field_name('secondary_title'); ?>"
+						type="text" value="<?php echo $secondary_title; ?>" />
+				</label>
+				<label for="<?php echo $this->get_field_id('body'); ?>">Body:
+				<input class="widefat" id="<?php echo $this->get_field_id('body'); ?>"
+						name="<?php echo $this->get_field_name('body'); ?>"
+						type="text" value="<?php echo $body; ?>" />
+				</label>
+				<label for="<?php echo $this->get_field_id('img'); ?>">Image URL:
+				<input class="widefat" id="<?php echo $this->get_field_id('img'); ?>"
+						name="<?php echo $this->get_field_name('img'); ?>"
+						type="text" value="<?php echo $img; ?>" />
 				</label>	
 			</p> <?php
 		}
