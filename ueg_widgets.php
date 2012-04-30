@@ -32,19 +32,33 @@ if (!class_exists("ueg_widget_act_now")) {
 	class ueg_widget_act_now extends WP_Widget {
 		
 		function ueg_widget_act_now() {
-		
+			parent::WP_Widget(false, $name = 'Act Now');
 		}
 		
 		function widget($args, $instance) {
-		
+			extract($args);
+			echo $before_widget;
+				echo $before_title;
+					echo $instance['title'];
+				echo $after_title;
+				echo "Howdy, Bounty Hunter!";
+			echo $after_widget;
 		}
 		
 		function update($new_isntance, $old_instance) {
-		
+			return $new_instance;
 		}
 		
 		function form($instance) {
-		
+			$title = esc_attr($instance['title']);
+			?> 
+			<p>
+				<label for="<?php echo $this->get_field_id('title'); ?>">Title: 
+					<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" 
+							name="<?php echo $this->get_field_name('title'); ?>" 
+							type="text" value="<?php echo $title; ?>" />
+				</label>	
+			</p> <?php
 		}
 	}
 }
