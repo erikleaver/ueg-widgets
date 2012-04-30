@@ -45,8 +45,9 @@ if (!class_exists("ueg_widget_act_now")) {
 				echo $before_title;
 					echo $instance['title'];
 				echo $after_title;
-				echo '<h2>'. $instance['secondary_title'] .'</h2>';
+				echo '<h3>'. $instance['secondary_title'] .'</h3><br /><br />';
 				echo '<p>'. $instance['body'] .'</p>';
+				echo '<p><a href="'. $instance['action_url'] .'">'. $instance['call_to_action'] .' &rarr;</a></p>';
 			echo $after_widget;
 		}
 		
@@ -59,6 +60,8 @@ if (!class_exists("ueg_widget_act_now")) {
 			$secondary_title = esc_attr($instance['secondary_title']);
 			$body = esc_attr($instance['body']);
 			$img = esc_attr($instance['img']);
+			$call_to_action = esc_attr($instance['call_to_action']);
+			$action_url = esc_attr($instance['action_url']);
 			?> 
 			<p>
 				<label for="<?php echo $this->get_field_id('title'); ?>">Title: 
@@ -80,6 +83,16 @@ if (!class_exists("ueg_widget_act_now")) {
 				<input class="widefat" id="<?php echo $this->get_field_id('img'); ?>"
 						name="<?php echo $this->get_field_name('img'); ?>"
 						type="text" value="<?php echo $img; ?>" />
+				</label>	
+				<label for="<?php echo $this->get_field_id('call_to_action'); ?>">Call To Action:
+				<input class="widefat" id="<?php echo $this->get_field_id('call_to_action'); ?>"
+						name="<?php echo $this->get_field_name('call_to_action'); ?>"
+						type="text" value="<?php echo $call_to_action; ?>" />
+				</label>	
+				<label for="<?php echo $this->get_field_id('action_url'); ?>">Call To Action URL:
+				<input class="widefat" id="<?php echo $this->get_field_id('action_url'); ?>"
+						name="<?php echo $this->get_field_name('action_url'); ?>"
+						type="text" value="<?php echo $action_url; ?>" />
 				</label>	
 			</p> <?php
 		}
