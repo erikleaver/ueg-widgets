@@ -31,8 +31,8 @@ if (!class_exists("ueg_widget_act_now")) {
 
 	class ueg_widget_act_now extends WP_Widget {
 		
-		function ueg_widget_act_now() {
-			parent::WP_Widget(false, $name = 'Act Now');
+		function __construct() {
+			parent::__construct('ueg_widget_act_now','Act Now',array('description' => __('Act Now Widget', 'ueg_widgets')));
 		}
 		
 		function widget($args, $instance) {
@@ -45,7 +45,7 @@ if (!class_exists("ueg_widget_act_now")) {
 			echo $after_widget;
 		}
 		
-		function update($new_isntance, $old_instance) {
+		function update($new_instance, $old_instance) {
 			return $new_instance;
 		}
 		
@@ -63,6 +63,10 @@ if (!class_exists("ueg_widget_act_now")) {
 	}
 }
 
-register_widget('ueg_widget_act_now');
+function load_widgets() {
+	register_widget('ueg_widget_act_now');	
+}
+
+add_action('widgets_init','load_widgets');
 
 ?>
